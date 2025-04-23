@@ -1,1 +1,9 @@
-Generate a dataset of n diverse questions someone might ask a Large Language Model, formatted as a CSV file with two columns. The first column header should be 'Questions' (containing the user queries), and the second column header should be 'Category' (classifying each question into domains like Technology, Creative Writing, Data Analysis, Education, Philosophy, Technical Support, Content Creation, Math/Logic, Health/Wellness, or Career Advice). Ensure the questions reflect real-world use cases and maintain proper CSV formatting.
+Generate a dataset of n diverse questions someone might ask a Large Language Model, formatted as a JSON file with two properties for each question object. The first property should be 'Question' (containing the user queries), and the second property should be 'Category' (classifying each question into domains like Technology, Creative Writing, Data Analysis, Education, Philosophy, Technical Support, Content Creation, Math/Logic, Health/Wellness, or Career Advice). Ensure the questions reflect real-world use cases and maintain proper formatting. You will return exactly n separate questions, otherwise, you will return "Error".
+
+An example format for n = 1 is:
+"[
+  {
+    "Question": <Question>,
+    "Category": <Category>
+  }
+]"

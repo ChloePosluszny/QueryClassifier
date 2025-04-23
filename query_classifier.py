@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-from sklearn import kmeans
 from sentence_transformers import SentenceTransformer
 from sklearn.cluster import KMeans
 from sklearn.metrics.pairwise import cosine_similarity
@@ -19,10 +18,12 @@ class embed_data():
         # initialize the model and load data
         self.model = SentenceTransformer(model_name)
         self.data_frame = load_data(data_path)
+        print("Loaded data:", self.data_frame.head())
+        #TODO clean data removing duplicates.
         
     def embed(self):
         # use SBERT to vectorize the natural language data
-        self.data_frame['embeddings'] = self.model.encode(self.data_frame['query'].tolist(), show_progress_bar=True)
+        self.data_frame['embeddings'] = self.model.encode(self.data_frame['Question'], show_progress_bar=True).tolist()
         return self.data_frame
     
 class cluster_data():
@@ -53,42 +54,42 @@ class cluster_data():
         
         # create a scatter plot of the clusters
         fig = plt.figure()
-        fig.title('3D PCA Visulization of Clusters')
+        plt.title('3D PCA Visulization of Clusters')
         
         ax = fig.add_subplot(111, projection='3d')
         ax.scatter(reduced_data[:, 0], reduced_data[:, 1], reduced_data[:, 2], c=self.data_frame['cluster'], cmap='viridis', marker='o')
         
-        fig.show()
+        plt.show()
 
-class neural_network_category_classifier():
-    #TODO: or maybe alternate to transfer learning model?
-    categories = None
-    dataframe = None
+# class neural_network_category_classifier():
+#     #TODO: or maybe alternate to transfer learning model? <- yea i think transfer learning is smarter
+#     categories = None
+#     dataframe = None
     
-    def __init__(self, categories_path, dataframe):
-        # initialize the neural network's layers and load data
-        self.categories = load_data(categories_path)
-        self.dataframe = dataframe
+#     def __init__(self, categories_path, dataframe):
+#         # initialize the neural network's layers and load data
+#         self.categories = dataframe["Category"]
+#         self.dataframe = dataframe
         
-        # define layers
+#         # define layers
         
     
-    def forward(self):
-        #TODO define forward pass
+#     def forward(self):
+#         #TODO define forward pass
         
-    def train(self):
-        #TODO define training loop
+#     def train(self):
+#         #TODO define training loop
 
 def load_data(file_path):
     """
     Load the dataset from a CSV file.
     """
-    data = pd.read_csv(file_path)
+    data = pd.read_json(file_path)
     return data
     
 def main():
     # Load and embed the data
-    embedder_obj = embed_data('data/train.csv')
+    embedder_obj = embed_data("data/generated_dataset.json")
     data_frame = embedder_obj.embed()
     
     # TODO: loop the clustering process with different numbers of clusters until the best amt of clusters is found (but not overfitted)

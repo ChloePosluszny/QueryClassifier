@@ -1,0 +1,1162 @@
+[
+  {
+    "Question": "How do I set up a VPN on my Windows 10 computer?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are the best practices for writing a compelling novel opening?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "Can you explain the concept of blockchain in simple terms?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How do I calculate the standard deviation of a dataset in Python?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are some effective strategies for teaching fractions to elementary students?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the meaning of life according to existentialist philosophy?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How can I troubleshoot a slow internet connection?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some engaging blog post ideas for a travel website?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "How do I solve a quadratic equation?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are the benefits of meditation for stress relief?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How should I prepare for a software engineering job interview?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "What are the differences between machine learning and deep learning?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How can I develop a unique voice for my fictional characters?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What is the best way to visualize time-series data?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "How can I make online learning more interactive for students?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What are the key arguments for and against determinism?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I fix a 'blue screen of death' error on my PC?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some tips for writing persuasive marketing copy?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "How do I find the derivative of a complex function?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are the best foods to eat for improving gut health?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How can I negotiate a higher salary during a job offer?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "What are the latest trends in artificial intelligence?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How can I write a compelling antagonist for my story?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What are the steps to clean and preprocess a messy dataset?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are some effective study techniques for memorization?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the trolley problem, and what does it teach us about ethics?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I recover deleted files from a hard drive?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some creative ways to repurpose old blog content?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "How do I calculate the area under a curve using integration?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are the best exercises for improving posture?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How can I transition from a technical role to a management position?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "What are the advantages of using cloud computing for businesses?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How can I write a believable dialogue for my novel?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What are the best tools for exploratory data analysis?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "How can I help students with learning disabilities succeed in the classroom?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the difference between utilitarianism and deontological ethics?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I remove malware from my computer?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some effective strategies for growing a YouTube channel?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "How do I solve a system of linear equations using matrices?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are the best ways to manage chronic pain without medication?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How can I build a strong personal brand for my career?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "What are the security risks of using public Wi-Fi, and how can I stay safe?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How can I create a vivid setting for my fantasy novel?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What are the key metrics to track in a marketing campaign?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are some innovative teaching methods for engaging high school students?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the concept of 'the self' in Eastern vs. Western philosophy?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I optimize my computer for gaming performance?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some tips for writing a compelling LinkedIn post?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "How do I calculate the probability of two independent events occurring?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are the best natural remedies for insomnia?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How can I effectively network in a remote work environment?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "What are the differences between SQL and NoSQL databases?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How can I develop a consistent writing habit?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What are the best practices for data visualization in business reports?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "How can I incorporate project-based learning into my curriculum?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the role of free will in moral responsibility?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I fix a printer that won't connect to my network?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some engaging content ideas for a fitness Instagram page?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "How do I find the roots of a polynomial equation?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are the best ways to boost my immune system naturally?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How can I write a standout cover letter for a job application?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "What are the ethical implications of facial recognition technology?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How can I write a compelling short story with a twist ending?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What are the best Python libraries for data manipulation?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "How can I make my history lessons more engaging for students?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the nature of consciousness according to modern philosophy?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I troubleshoot a smartphone that won't charge?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some effective ways to repurpose podcast content into blog posts?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "How do I calculate compound interest?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are the best breathing exercises for anxiety relief?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How can I prepare for a leadership role in my company?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "What are the pros and cons of using open-source software?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How can I write a compelling villain backstory?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What are the best techniques for handling missing data in a dataset?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "How can I encourage critical thinking in my students?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the difference between nihilism and absurdism?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I fix a frozen application on my Mac?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some creative ways to use video content in digital marketing?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "How do I solve a Rubik's Cube using algorithms?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are the best stretches for relieving lower back pain?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How can I improve my public speaking skills for presentations?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "What are the key components of a secure password?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How can I write a compelling first-person narrative?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What are the best practices for data cleaning in Excel?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "How can I teach coding to beginners effectively?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the concept of 'the sublime' in aesthetics?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I speed up a slow Windows computer?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some unique content ideas for a food blog?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "How do I calculate the volume of a irregularly shaped object?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are the best natural ways to lower blood pressure?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How can I develop a strong elevator pitch for networking?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "What are the differences between AR and VR technologies?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How can I write a compelling mystery novel plot?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What are the best tools for sentiment analysis of social media data?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "How can I incorporate mindfulness practices into the classroom?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the concept of 'the other' in existentialist philosophy?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I fix a Wi-Fi router that keeps disconnecting?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some effective ways to repurpose webinar content?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "How do I calculate the factorial of a number?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are the best foods for improving brain function?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How can I build a professional network from scratch?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "What are the risks and benefits of using biometric authentication?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How can I write a compelling dystopian story?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What are the best methods for outlier detection in datasets?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "How can I teach financial literacy to high school students?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the concept of 'the will to power' in Nietzsche's philosophy?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I troubleshoot a microphone that isn't working on my computer?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some engaging content ideas for a tech newsletter?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "How do I solve a Sudoku puzzle using logic?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are the best natural remedies for seasonal allergies?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How can I develop leadership skills in a non-managerial role?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "What are the differences between HTTP and HTTPS?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How can I write a compelling romance subplot?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What are the best techniques for feature selection in machine learning?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "How can I make science experiments more engaging for middle school students?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the concept of 'the veil of ignorance' in Rawls' philosophy?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I fix a keyboard that's typing the wrong characters?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some creative ways to use infographics in content marketing?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "How do I calculate the perimeter of a complex shape?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are the best exercises for improving cardiovascular health?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How can I transition into a freelance career successfully?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "What are the advantages of using a Linux operating system?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How can I write a compelling horror story?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What are the best practices for data normalization in databases?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "How can I teach digital citizenship to elementary students?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the concept of 'the categorical imperative' in Kant's philosophy?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I fix a computer that won't boot up?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some effective ways to repurpose blog content into social media posts?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "How do I calculate the greatest common divisor of two numbers?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are the best natural ways to improve sleep quality?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How can I develop a strong online presence for my freelance business?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "What are the differences between symmetric and asymmetric encryption?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How can I write a compelling coming-of-age story?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What are the best techniques for clustering analysis in data science?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "How can I incorporate STEM activities into early childhood education?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the concept of 'the absurd' in Camus' philosophy?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I fix a touchscreen that's not responding?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some engaging content ideas for a business podcast?",
+    "Category": "Content"
+  },
+  {
+    "Question": "How do I reset my router?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are the best practices for writing a novel?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "Can you explain how blockchain works?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How do I calculate the standard deviation of a dataset?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are some effective study techniques for exams?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the meaning of life?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How can I create engaging social media content?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "What is the Pythagorean theorem?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are some ways to reduce stress?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How should I prepare for a job interview?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "How do I install Python on my computer?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some tips for writing compelling dialogue?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What is the difference between AI and machine learning?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How do I clean a dataset with missing values?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are the benefits of online learning?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the nature of consciousness?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How can I improve my blog's SEO?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "How do I solve a quadratic equation?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are some healthy meal prep ideas?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How do I write a strong resume?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "Why is my computer running slow?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "How can I develop a unique writing style?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What are the latest trends in cybersecurity?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How do I perform a regression analysis?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are the best resources for learning a new language?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the ethical implication of artificial intelligence?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How can I grow my YouTube channel?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "What is the Monty Hall problem?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are some natural remedies for insomnia?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How do I negotiate a salary increase?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "How do I fix a blue screen error on Windows?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are the key elements of a good short story?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "How does cloud computing work?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "What is the best way to visualize data?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "How can teachers engage students in virtual classrooms?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the concept of free will?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I write a compelling headline?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "What is the Fibonacci sequence?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are the benefits of meditation?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How do I transition to a new career field?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "How do I recover deleted files from my hard drive?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some common pitfalls in writing fiction?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What is the role of APIs in software development?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How do I handle outliers in my data?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are the advantages of homeschooling?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the trolley problem?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How can I make my podcast more popular?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "How do I calculate compound interest?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are some ways to boost my immune system?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How do I answer behavioral interview questions?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "How do I troubleshoot a slow internet connection?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some techniques for overcoming writer's block?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What is the future of quantum computing?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How do I perform sentiment analysis on text data?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are the best strategies for memorization?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the difference between utilitarianism and deontology?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I create a content calendar?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "What is the Riemann Hypothesis?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are some tips for better sleep hygiene?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How do I build a professional network?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "How do I remove a virus from my computer?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are the key components of a screenplay?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What is the role of big data in business?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How do I normalize a database?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are the best online courses for coding?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the concept of existentialism?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I write a persuasive email?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "What is the traveling salesman problem?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are some natural ways to lower blood pressure?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How do I ask for a promotion?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "How do I update my graphics drivers?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some tips for writing poetry?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What is the Internet of Things (IoT)?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How do I perform cluster analysis?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are the best ways to take notes in class?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the philosophy of stoicism?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I optimize my website for mobile?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "What is Bayes' Theorem?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are some exercises for improving posture?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How do I handle workplace conflict?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "How do I set up a VPN?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some common themes in science fiction?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What is the role of neural networks in AI?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How do I perform time series forecasting?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are the best strategies for test-taking?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the concept of nihilism?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I create a viral social media post?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "What is the Goldbach Conjecture?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are some ways to improve mental clarity?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How do I write a cover letter?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "How do I fix a printer that won't connect?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some techniques for writing humor?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What is the role of 5G in modern technology?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How do I perform A/B testing?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are the best ways to learn programming?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the philosophy of Buddhism?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I create an effective infographic?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "What is the Collatz Conjecture?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are some natural ways to relieve anxiety?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How do I prepare for a performance review?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "How do I clear my browser cache?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some tips for writing a memoir?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What is the role of virtual reality in education?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How do I perform principal component analysis?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are the best ways to improve reading comprehension?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the concept of determinism?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I write a product review?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "What is the P vs NP problem?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are some ways to improve digestion?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How do I handle a toxic work environment?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "How do I recover a forgotten password?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some techniques for writing suspense?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What is the role of edge computing?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How do I perform text mining?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are the best ways to learn math?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the philosophy of existentialism?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I create a successful email marketing campaign?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "What is the Four Color Theorem?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are some natural ways to boost energy?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How do I develop leadership skills?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "How do I fix a frozen computer?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some tips for writing historical fiction?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What is the role of augmented reality in retail?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How do I perform network analysis?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are the best ways to learn a musical instrument?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the concept of moral relativism?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I create a compelling video script?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "What is the Twin Prime Conjecture?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are some ways to improve cardiovascular health?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How do I ask for feedback at work?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "How do I remove malware from my phone?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some techniques for writing fantasy?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What is the role of robotics in manufacturing?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How do I perform geospatial analysis?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are the best ways to learn history?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the philosophy of pragmatism?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I write a press release?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "What is the Halting Problem?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are some natural ways to improve skin health?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How do I set career goals?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "How do I troubleshoot a Wi-Fi signal drop?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some tips for writing a thriller?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What is the role of nanotechnology in medicine?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How do I perform survival analysis?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are the best ways to learn chemistry?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the concept of hedonism?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "How do I create a successful blog?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "What is the Poincaré Conjecture?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are some ways to improve flexibility?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How do I improve my public speaking skills?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "How do I fix a slow Mac?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some techniques for writing romance?",
+    "Category": "Creative Writing"
+  }
+]
