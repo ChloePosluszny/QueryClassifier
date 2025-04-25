@@ -96,7 +96,7 @@ class cluster_data():
 
 def load_data(file_path):
     """
-    Load the dataset from a CSV file.
+    Load the dataset from a JSON file.
     """
     data = pd.read_json(file_path)
     return data
@@ -126,9 +126,6 @@ def main():
     print(f"Silhouette Score for {best[0]} clusters: {best[1]}")
     
     cluster_data_obj.visualize_clusters()
-    
-    # Save the clustered data to a new CSV file
-    # data_frame.to_csv('data/clustered_queries.csv', index=False)
 
 if __name__ == "__main__":
     main()
