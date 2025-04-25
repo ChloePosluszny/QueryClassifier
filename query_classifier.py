@@ -21,16 +21,16 @@ class embed_data():
         self.data_frame = load_data(data_path)
         
         # clean data (remove duplicates)
-        self.data_frame.drop_duplicates(subset = "Question", keep = "first", inplace=True)
+        self.data_frame.drop_duplicates(subset = "Question", keep = "first", inplace = True)
 
         # remove any rows with NaN values
-        self.data_frame = self.data_frame.dropna()
+        self.data_frame.dropna(inplace = True)
         
-        self.data_frame.reset_index(drop=True, inplace=True)
+        self.data_frame.reset_index(drop = True, inplace = True)
         
     def embed(self):
         # use SBERT to vectorize the natural language data
-        self.data_frame['embeddings'] = self.model.encode(self.data_frame['Question'], show_progress_bar=True).tolist()
+        self.data_frame['embeddings'] = self.model.encode(self.data_frame['Question'], show_progress_bar = True).tolist()
         return self.data_frame
     
 class cluster_data():
@@ -58,15 +58,15 @@ class cluster_data():
         # visualize the clusters using PCA
         
         # reduce vectors to three dimensions for visualization
-        pca = PCA(n_components=3)
+        pca = PCA(n_components = 3)
         reduced_data = pca.fit_transform(list(self.data_frame['embeddings']))
         
         # create a scatter plot of the clusters
         fig = plt.figure()
         plt.title(f'3D PCA Visulization of {self.model.n_clusters} Clusters')
         
-        ax = fig.add_subplot(111, projection='3d')
-        ax.scatter(reduced_data[:, 0], reduced_data[:, 1], reduced_data[:, 2], c=self.data_frame['cluster'], cmap='viridis', marker='o')
+        ax = fig.add_subplot(111, projection = '3d')
+        ax.scatter(reduced_data[:, 0], reduced_data[:, 1], reduced_data[:, 2], c = self.data_frame['cluster'], cmap = 'viridis', marker = 'o')
         
         plt.show()
         
@@ -109,7 +109,7 @@ def main():
     best = (0, 0)
     for i in range (2, 20):
         # Perform KMeans clustering
-        cluster_data_obj = cluster_data(data_frame, clusters=i)
+        cluster_data_obj = cluster_data(data_frame, clusters = i)
         
         cluster_data_obj.cluster()
         
