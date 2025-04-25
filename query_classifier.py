@@ -4,6 +4,7 @@ from sentence_transformers import SentenceTransformer
 from sklearn.cluster import KMeans
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.decomposition import PCA
+from sklearn.metrics import silhouette_score
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
@@ -47,8 +48,10 @@ class cluster_data():
     def cluster(self):
         # fit the model to the data
         self.model.fit(list(self.data_frame['embeddings']))
+        
         # assign cluster labels to the data frame
         self.data_frame['cluster'] = self.model.labels_
+        
         return self.data_frame
     
     def visualize_clusters(self):
@@ -60,12 +63,17 @@ class cluster_data():
         
         # create a scatter plot of the clusters
         fig = plt.figure()
-        plt.title('3D PCA Visulization of Clusters')
+        plt.title(f'3D PCA Visulization of {self.model.n_clusters} Clusters')
         
         ax = fig.add_subplot(111, projection='3d')
         ax.scatter(reduced_data[:, 0], reduced_data[:, 1], reduced_data[:, 2], c=self.data_frame['cluster'], cmap='viridis', marker='o')
         
         plt.show()
+        
+    def print_clusters(self):
+        # print the clusters
+        for i in range (self.model.n_clusters):
+            print(f"Cluster {i}: {self.data_frame[self.data_frame['cluster'] == i]['Question'].values}")
 
 # class neural_network_category_classifier():
 #     #TODO: or maybe alternate to transfer learning model? <- yea i think transfer learning is smarter
@@ -99,13 +107,27 @@ def main():
     data_frame = embedder_obj.embed()
     
     # TODO: loop the clustering process with different numbers of clusters until the best amt of clusters is found (but not overfitted)
+    
+    best = (0, 0)
+    for i in range (2, 20):
+        # Perform KMeans clustering
+        cluster_data_obj = cluster_data(data_frame, clusters=i)
+        
+        cluster_data_obj.cluster()
+        
+        # Calculate the silhouette score
+        score = silhouette_score(data_frame['embeddings'].tolist(), cluster_data_obj.model.labels_)
+        if score > best[1]:
+            best = (i, score)
+    
     # Perform KMeans clustering
-    cluster_data_obj = cluster_data(data_frame, clusters=5)
+    cluster_data_obj = cluster_data(data_frame, clusters=best[0])
     
     cluster_data_obj.cluster()
     
+    print(f"Silhouette Score for {best[0]} clusters: {best[1]}")
+    
     cluster_data_obj.visualize_clusters()
-    plt.title('3D PCA of Clusters')
     
     # Save the clustered data to a new CSV file
     # data_frame.to_csv('data/clustered_queries.csv', index=False)
