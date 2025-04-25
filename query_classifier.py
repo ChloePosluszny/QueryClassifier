@@ -106,8 +106,6 @@ def main():
     embedder_obj = embed_data("data/generated_dataset.json")
     data_frame = embedder_obj.embed()
     
-    # TODO: loop the clustering process with different numbers of clusters until the best amt of clusters is found (but not overfitted)
-    
     best = (0, 0)
     for i in range (2, 20):
         # Perform KMeans clustering
