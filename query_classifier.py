@@ -18,8 +18,14 @@ class embed_data():
         # initialize the model and load data
         self.model = SentenceTransformer(model_name)
         self.data_frame = load_data(data_path)
-        print("Loaded data:", self.data_frame.head())
-        #TODO clean data removing duplicates.
+        
+        # clean data (remove duplicates)
+        self.data_frame.drop_duplicates(subset = "Question", keep = "first", inplace=True)
+
+        # remove any rows with NaN values
+        self.data_frame = self.data_frame.dropna()
+        
+        self.data_frame.reset_index(drop=True, inplace=True)
         
     def embed(self):
         # use SBERT to vectorize the natural language data
