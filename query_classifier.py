@@ -5,6 +5,11 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import StratifiedKFold, cross_validate
 from collections import Counter
 import joblib
+from sklearn.cluster import KMeans
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.decomposition import PCA
+from sklearn.metrics import silhouette_score
+import matplotlib.pyplot as plt
 
 def load_data(file_path: str) -> pd.DataFrame:
     """Read the JSON dataset into a DataFrame."""
@@ -24,18 +29,59 @@ class EmbedData:
         self.df.reset_index(drop=True, inplace=True)
 
     def embed(self) -> pd.DataFrame:
-        self.df["embedding"] = self.model.encode(
+        self.df["Embedding"] = self.model.encode(
             self.df["Question"].tolist(), show_progress_bar=True
         ).tolist()
         return self.df
+    
+class cluster_data():
+    """
+    Cluster the data using a k-means alogrithm.
+    """
+    model = None
+    data_frame = None
+    
+    def __init__(self, data_frame, clusters=5):
+        # initialize the model
+        self.model = KMeans(n_clusters = clusters, random_state = 42)
+        self.data_frame = data_frame
+        
+    def cluster(self):
+        # fit the model to the data
+        self.model.fit(list(self.data_frame['Embedding']))
+        
+        # assign cluster labels to the data frame
+        self.data_frame['Cluster'] = self.model.labels_
+        
+        return self.data_frame
+    
+    def visualize_clusters(self):
+        # visualize the clusters using PCA
+        
+        # reduce vectors to three dimensions for visualization
+        pca = PCA(n_components = 3)
+        reduced_data = pca.fit_transform(list(self.data_frame['Embedding']))
+        
+        # create a scatter plot of the clusters
+        fig = plt.figure()
+        plt.title(f'3D PCA Visulization of {self.model.n_clusters} Clusters')
+        
+        ax = fig.add_subplot(111, projection = '3d')
+        ax.scatter(reduced_data[:, 0], reduced_data[:, 1], reduced_data[:, 2], c = self.data_frame['Cluster'], cmap = 'viridis', marker = 'o')
+        
+        plt.show()
+        
+    def print_clusters(self):
+        # print the clusters
+        for i in range (self.model.n_clusters):
+            print(f"Cluster {i}: {self.data_frame[self.data_frame['Cluster'] == i]['Question'].values}")
 
 class CategoryClassifier:
     """Logistic‑Regression on frozen SBERT vectors + k‑fold CV report."""
 
     def __init__(self, dataframe: pd.DataFrame):
         self.df = dataframe
-        self.X = np.vstack(self.df["embedding"].to_numpy())
-        self.y = self.df["Category"].values
+        self.X = np.vstack(self.df['Embedding'].to_numpy())
 
         # simple multinomial logistic regression (multi_class parameter deprecated)
         self.clf = LogisticRegression(
@@ -44,9 +90,9 @@ class CategoryClassifier:
             n_jobs=-1,
         )
 
-    def cross_validate(self, desired_folds: int = 5):
+    def cross_validate(self, X: np.ndarray, y: np.ndarray, desired_folds: int = 5):
         # ensure we don't ask for more folds than the smallest class size
-        min_class_count = min(Counter(self.y).values())
+        min_class_count = min(Counter(y).values())
         n_splits = max(2, min(desired_folds, min_class_count))
         if n_splits < desired_folds:
             print(
@@ -64,8 +110,8 @@ class CategoryClassifier:
 
         results = cross_validate(
             self.clf,
-            self.X,
-            self.y,
+            X,
+            y,
             cv=cv,
             scoring=scoring,
             return_train_score=False,
@@ -76,12 +122,18 @@ class CategoryClassifier:
             scores = results[f"test_{key}"]
             print(f"{key:15}: {scores.mean():.3f} ± {scores.std():.3f}")
 
-    def fit_full(self):
-        self.clf.fit(self.X, self.y)
+    def fit_full(self, X: np.ndarray, y: np.ndarray):
+        self.clf.fit(X, y)
 
     def predict(self, question: str, embedder: SentenceTransformer) -> str:
         vec = embedder.encode([question])
         return self.clf.predict(vec)[0]
+    
+    def predict_embedded(self, embedding: np.ndarray) -> str:
+        return self.clf.predict(embedding)[0]
+    
+    def predict_embedded_batch(self, embeddings: np.ndarray) -> list:
+        return self.clf.predict(embeddings).tolist()
 
     def save(self, path: str = "category_classifier.joblib"):
         joblib.dump(self.clf, path)
@@ -89,11 +141,49 @@ class CategoryClassifier:
 
 def main():
     embedder = EmbedData("data/generated_dataset.json")
-    df = embedder.embed()
+    data_frame = embedder.embed()
+    
+    best = (0, 0)
+    for i in range (2, 20):
+        # Find the best number of clusters using silhouette score
+        cluster_data_obj = cluster_data(data_frame, clusters = i)
+        
+        cluster_data_obj.cluster()
+        
+        # Calculate the silhouette score
+        score = silhouette_score(data_frame['Embedding'].tolist(), cluster_data_obj.model.labels_)
+        if score > best[1]:
+            best = (i, score)
+    
+    # Perform KMeans clustering
+    cluster_data_obj = cluster_data(data_frame, clusters=best[0])
+    cluster_data_obj.cluster()
+    
+    print(f"Silhouette Score for {best[0]} clusters: {best[1]}")   
+    cluster_data_obj.visualize_clusters()
+    
+    centroids_df = pd.DataFrame({'Embedding': [list(center) for center in cluster_data_obj.model.cluster_centers_]})
+    centroids_df['Cluster'] = [i for i in range(cluster_data_obj.model.n_clusters)]
+    centroids_df['Questions'] = [data_frame[data_frame['Cluster'] == i]['Question'].values for i in range(cluster_data_obj.model.n_clusters)]
+    
+    print(centroids_df.head())
+    
 
-    classifier = CategoryClassifier(df)
-    classifier.cross_validate(desired_folds=5)
-    classifier.fit_full()
+    # Classify the centroids using logisitic regression
+    classifier = CategoryClassifier(centroids_df)
+    classifier.cross_validate(np.vstack(data_frame['Embedding'].to_numpy()), data_frame['Category'].values, desired_folds=5)
+    classifier.fit_full(np.vstack(data_frame['Embedding'].to_numpy()), data_frame['Category'].values)
+    
+    centroids_df['Category'] = classifier.predict_embedded_batch(np.vstack(centroids_df['Embedding'].to_numpy()))
+    
+    # Print the clusers and their predicted categories
+    for category in centroids_df['Category']:
+        cluster = centroids_df[centroids_df['Category'] == category]['Cluster'].values[0]
+        questions = centroids_df[centroids_df['Category'] == category]['Questions'].values
+        
+        print(f"\nCluster: {cluster} \nCategory: {category} \nQuestions: {questions}")
+        
+    # TODO: workout some sort of accuracy metric
 
 if __name__ == "__main__":
     main()
