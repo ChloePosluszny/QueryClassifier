@@ -1,131 +1,99 @@
 import pandas as pd
 import numpy as np
 from sentence_transformers import SentenceTransformer
-from sklearn.cluster import KMeans
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.decomposition import PCA
-from sklearn.metrics import silhouette_score
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import StratifiedKFold, cross_validate
+from collections import Counter
+import joblib
 
-class embed_data():
-    """
-    Vectorize queries using SBERT.
-    """
-    model = None
-    data_frame = None
-    
-    def __init__(self, data_path, model_name = 'multi-qa-MiniLM-L6-dot-v1'): # default is trained on question and answer pairs
-        # initialize the model and load data
+def load_data(file_path: str) -> pd.DataFrame:
+    """Read the JSON dataset into a DataFrame."""
+    return pd.read_json(file_path)
+
+
+class EmbedData:
+    """Attach a 384‑d SBERT embedding to each question."""
+
+    def __init__(self, data_path: str, model_name: str = "multi-qa-MiniLM-L6-dot-v1"):
         self.model = SentenceTransformer(model_name)
-        self.data_frame = load_data(data_path)
-        
-        # clean data (remove duplicates)
-        self.data_frame.drop_duplicates(subset = "Question", keep = "first", inplace = True)
+        self.df = load_data(data_path)
 
-        # remove any rows with NaN values
-        self.data_frame.dropna(inplace = True)
-        
-        self.data_frame.reset_index(drop = True, inplace = True)
-        
-    def embed(self):
-        # use SBERT to vectorize the natural language data
-        self.data_frame['embeddings'] = self.model.encode(self.data_frame['Question'], show_progress_bar = True).tolist()
-        return self.data_frame
-    
-class cluster_data():
-    """
-    Cluster the data using a k-means alogrithm.
-    """
-    model = None
-    data_frame = None
-    
-    def __init__(self, data_frame, clusters=5):
-        # initialize the model
-        self.model = KMeans(n_clusters = clusters, random_state = 42)
-        self.data_frame = data_frame
-        
-    def cluster(self):
-        # fit the model to the data
-        self.model.fit(list(self.data_frame['embeddings']))
-        
-        # assign cluster labels to the data frame
-        self.data_frame['cluster'] = self.model.labels_
-        
-        return self.data_frame
-    
-    def visualize_clusters(self):
-        # visualize the clusters using PCA
-        
-        # reduce vectors to three dimensions for visualization
-        pca = PCA(n_components = 3)
-        reduced_data = pca.fit_transform(list(self.data_frame['embeddings']))
-        
-        # create a scatter plot of the clusters
-        fig = plt.figure()
-        plt.title(f'3D PCA Visulization of {self.model.n_clusters} Clusters')
-        
-        ax = fig.add_subplot(111, projection = '3d')
-        ax.scatter(reduced_data[:, 0], reduced_data[:, 1], reduced_data[:, 2], c = self.data_frame['cluster'], cmap = 'viridis', marker = 'o')
-        
-        plt.show()
-        
-    def print_clusters(self):
-        # print the clusters
-        for i in range (self.model.n_clusters):
-            print(f"Cluster {i}: {self.data_frame[self.data_frame['cluster'] == i]['Question'].values}")
+        # basic cleaning
+        self.df.drop_duplicates(subset="Question", inplace=True)
+        self.df.dropna(subset=["Question", "Category"], inplace=True)
+        self.df.reset_index(drop=True, inplace=True)
 
-# class neural_network_category_classifier():
-#     #TODO: or maybe alternate to transfer learning model? <- yea i think transfer learning is smarter
-#     categories = None
-#     dataframe = None
-    
-#     def __init__(self, categories_path, dataframe):
-#         # initialize the neural network's layers and load data
-#         self.categories = dataframe["Category"]
-#         self.dataframe = dataframe
-        
-#         # define layers
-        
-    
-#     def forward(self):
-#         #TODO define forward pass
-        
-#     def train(self):
-#         #TODO define training loop
+    def embed(self) -> pd.DataFrame:
+        self.df["embedding"] = self.model.encode(
+            self.df["Question"].tolist(), show_progress_bar=True
+        ).tolist()
+        return self.df
 
-def load_data(file_path):
-    """
-    Load the dataset from a JSON file.
-    """
-    data = pd.read_json(file_path)
-    return data
-    
+class CategoryClassifier:
+    """Logistic‑Regression on frozen SBERT vectors + k‑fold CV report."""
+
+    def __init__(self, dataframe: pd.DataFrame):
+        self.df = dataframe
+        self.X = np.vstack(self.df["embedding"].to_numpy())
+        self.y = self.df["Category"].values
+
+        # simple multinomial logistic regression (multi_class parameter deprecated)
+        self.clf = LogisticRegression(
+            max_iter=1000,
+            solver="lbfgs",
+            n_jobs=-1,
+        )
+
+    def cross_validate(self, desired_folds: int = 5):
+        # ensure we don't ask for more folds than the smallest class size
+        min_class_count = min(Counter(self.y).values())
+        n_splits = max(2, min(desired_folds, min_class_count))
+        if n_splits < desired_folds:
+            print(
+                f"[WARN] Smallest class has only {min_class_count} examples → "
+                f"reducing folds to {n_splits}."
+            )
+
+        cv = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
+        scoring = {
+            "accuracy": "accuracy",
+            "precision_macro": "precision_macro",
+            "recall_macro": "recall_macro",
+            "f1_macro": "f1_macro",
+        }
+
+        results = cross_validate(
+            self.clf,
+            self.X,
+            self.y,
+            cv=cv,
+            scoring=scoring,
+            return_train_score=False,
+            error_score="raise",
+        )
+        print(f"\n=== {n_splits}‑fold cross‑validation ===")
+        for key in scoring.keys():
+            scores = results[f"test_{key}"]
+            print(f"{key:15}: {scores.mean():.3f} ± {scores.std():.3f}")
+
+    def fit_full(self):
+        self.clf.fit(self.X, self.y)
+
+    def predict(self, question: str, embedder: SentenceTransformer) -> str:
+        vec = embedder.encode([question])
+        return self.clf.predict(vec)[0]
+
+    def save(self, path: str = "category_classifier.joblib"):
+        joblib.dump(self.clf, path)
+        print(f"Saved trained classifier to {path}")
+
 def main():
-    # Load and embed the data
-    embedder_obj = embed_data("data/generated_dataset.json")
-    data_frame = embedder_obj.embed()
-    
-    best = (0, 0)
-    for i in range (2, 20):
-        # Perform KMeans clustering
-        cluster_data_obj = cluster_data(data_frame, clusters = i)
-        
-        cluster_data_obj.cluster()
-        
-        # Calculate the silhouette score
-        score = silhouette_score(data_frame['embeddings'].tolist(), cluster_data_obj.model.labels_)
-        if score > best[1]:
-            best = (i, score)
-    
-    # Perform KMeans clustering
-    cluster_data_obj = cluster_data(data_frame, clusters=best[0])
-    
-    cluster_data_obj.cluster()
-    
-    print(f"Silhouette Score for {best[0]} clusters: {best[1]}")
-    
-    cluster_data_obj.visualize_clusters()
+    embedder = EmbedData("data/generated_dataset.json")
+    df = embedder.embed()
+
+    classifier = CategoryClassifier(df)
+    classifier.cross_validate(desired_folds=5)
+    classifier.fit_full()
 
 if __name__ == "__main__":
     main()
