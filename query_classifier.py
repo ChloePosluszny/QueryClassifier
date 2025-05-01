@@ -10,6 +10,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.decomposition import PCA
 from sklearn.metrics import silhouette_score
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import normalize
+from sklearn.model_selection import GridSearchCV
 
 def load_data(file_path: str) -> pd.DataFrame:
     """Read the JSON dataset into a DataFrame."""
@@ -81,14 +83,25 @@ class CategoryClassifier:
 
     def __init__(self, dataframe: pd.DataFrame):
         self.df = dataframe
-        self.X = np.vstack(self.df['Embedding'].to_numpy())
+        # l2-normalize the cached embeddings right away
+        self.X_all = normalize(np.vstack(self.df["Embedding"].to_numpy()))
 
-        # simple multinomial logistic regression (multi_class parameter deprecated)
+        # default search grid
+        self.param_grid = {
+            "C": np.logspace(-3, 3, 13),
+            "class_weight": [None, "balanced"]
+        }
+        self.best_params_ = {"C": 1.0, "class_weight": None}
         self.clf = LogisticRegression(
             max_iter=1000,
             solver="lbfgs",
             n_jobs=-1,
+            multi_class="multinomial",
         )
+
+    @staticmethod
+    def l2_normalize(arr: np.ndarray) -> np.ndarray:
+        return normalize(arr)
 
     def cross_validate(self, X: np.ndarray, y: np.ndarray, desired_folds: int = 5):
         # ensure we don't ask for more folds than the smallest class size
@@ -101,39 +114,61 @@ class CategoryClassifier:
             )
 
         cv = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
+        X_norm = normalize(X)
+        base_clf = LogisticRegression(
+            max_iter=1000, solver="lbfgs", n_jobs=-1
+        )
+        gs = GridSearchCV(
+            estimator=base_clf,
+            param_grid=self.param_grid,
+            cv=cv,
+            scoring="f1_macro",
+            n_jobs=-1,
+        )
+        gs.fit(X_norm, y)
+        self.best_params_ = gs.best_params_
+        print(f"\n[GRID] Best params → {self.best_params_} "
+              f"(f1_macro = {gs.best_score_:.3f})")
+        self.clf = LogisticRegression(
+            **self.best_params_,
+            max_iter=1000,
+            solver="lbfgs",
+            n_jobs=-1,
+            multi_class="multinomial",
+        )
         scoring = {
             "accuracy": "accuracy",
             "precision_macro": "precision_macro",
             "recall_macro": "recall_macro",
             "f1_macro": "f1_macro",
         }
-
         results = cross_validate(
             self.clf,
-            X,
+            X_norm,
             y,
             cv=cv,
             scoring=scoring,
             return_train_score=False,
             error_score="raise",
         )
-        print(f"\n=== {n_splits}‑fold cross‑validation ===")
+        print(f"\n=== {n_splits}-fold CV (best model) ===")
         for key in scoring.keys():
             scores = results[f"test_{key}"]
             print(f"{key:15}: {scores.mean():.3f} ± {scores.std():.3f}")
 
     def fit_full(self, X: np.ndarray, y: np.ndarray):
-        self.clf.fit(X, y)
+        X_norm = self.l2_normalize(X)
+        self.clf.fit(X_norm, y)
 
     def predict(self, question: str, embedder: SentenceTransformer) -> str:
-        vec = embedder.encode([question])
+        vec = self.l2_normalize(embedder.encode([question]))
         return self.clf.predict(vec)[0]
     
     def predict_embedded(self, embedding: np.ndarray) -> str:
-        return self.clf.predict(embedding)[0]
+        return self.clf.predict(self.l2_normalize(embedding))[0]
     
     def predict_embedded_batch(self, embeddings: np.ndarray) -> list:
-        return self.clf.predict(embeddings).tolist()
+        return self.clf.predict(self.l2_normalize(embeddings)).tolist()
 
     def save(self, path: str = "category_classifier.joblib"):
         joblib.dump(self.clf, path)
