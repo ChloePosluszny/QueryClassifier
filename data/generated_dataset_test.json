@@ -1,0 +1,90 @@
+[
+  {
+    "Question": "What are the steps to clean and preprocess a messy dataset?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What are the best natural remedies for insomnia?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How can I write a standout cover letter for a job application?",
+    "Category": "Career Advice"
+  },
+  {
+    "Question": "How do I fix a Wi-Fi router that keeps disconnecting?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are some effective ways to repurpose blog content into social media posts?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "How do I fix a touchscreen that's not responding?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "What are the best practices for writing a novel?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "Can you explain how blockchain works?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "How can I create engaging social media content?",
+    "Category": "Content Creation"
+  },
+  {
+    "Question": "What are some tips for writing compelling dialogue?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What is the difference between AI and machine learning?",
+    "Category": "Technology"
+  },
+  {
+    "Question": "What are some healthy meal prep ideas?",
+    "Category": "Health/Wellness"
+  },
+  {
+    "Question": "How do I recover deleted files from my hard drive?",
+    "Category": "Technical Support"
+  },
+  {
+    "Question": "How do I handle outliers in my data?",
+    "Category": "Data Analysis"
+  },
+  {
+    "Question": "What is the trolley problem?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "What is the difference between utilitarianism and deontology?",
+    "Category": "Philosophy"
+  },
+  {
+    "Question": "What is the Riemann Hypothesis?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "What are the best ways to take notes in class?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What are some techniques for writing humor?",
+    "Category": "Creative Writing"
+  },
+  {
+    "Question": "What are the best ways to improve reading comprehension?",
+    "Category": "Education"
+  },
+  {
+    "Question": "What is the P vs NP problem?",
+    "Category": "Math/Logic"
+  },
+  {
+    "Question": "How do I ask for feedback at work?",
+    "Category": "Career Advice"
+  }
+]

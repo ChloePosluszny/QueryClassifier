@@ -8,7 +8,7 @@ import joblib
 from sklearn.cluster import KMeans
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.decomposition import PCA
-from sklearn.metrics import silhouette_score
+from sklearn.metrics import silhouette_score, confusion_matrix
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import normalize
 from sklearn.model_selection import GridSearchCV
@@ -169,12 +169,60 @@ class CategoryClassifier:
     
     def predict_embedded_batch(self, embeddings: np.ndarray) -> list:
         return self.clf.predict(self.l2_normalize(embeddings)).tolist()
+    
+    def print_confusion_matrix(self, X: np.ndarray, y_true: np.ndarray, labels=None):
+        """
+        Generate and print a confusion matrix for the classifier predictions.
+        
+        Args:
+            X: Input features for prediction
+            y_true: True labels for comparison
+            labels: List of label names to display on the matrix
+        """
+        X_norm = self.l2_normalize(X)
+        y_pred = self.clf.predict(X_norm)
+        
+        # Compute confusion matrix
+        cm = confusion_matrix(y_true, y_pred, labels=labels)
+        
+        # Print the confusion matrix
+        print("\n=== Confusion Matrix ===")
+        print("True labels (rows) vs Predicted labels (columns)")
+        print("Labels:", labels)
+        print(cm)
+        
+        # Calculate and print accuracy metrics from confusion matrix
+        print("\n=== Confusion Matrix Analysis ===")
+        print(f"Total samples: {np.sum(cm)}")
+        accuracy = np.sum(np.diag(cm)) / np.sum(cm)
+        print(f"Overall accuracy: {accuracy:.3f}")
+        
+        # Per-class metrics
+        print("\nPer-class metrics:")
+        for i, label in enumerate(labels):
+            true_pos = cm[i, i]
+            false_pos = np.sum(cm[:, i]) - true_pos
+            false_neg = np.sum(cm[i, :]) - true_pos
+            
+            precision = true_pos / (true_pos + false_pos) if (true_pos + false_pos) > 0 else 0
+            recall = true_pos / (true_pos + false_neg) if (true_pos + false_neg) > 0 else 0
+            f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+            
+            print(f"  {label}:")
+            print(f"    Precision: {precision:.3f}")
+            print(f"    Recall: {recall:.3f}")
+            print(f"    F1-score: {f1:.3f}")
+            print(f"    Samples: {np.sum(cm[i, :])}")
+        
+        return cm
 
     def save(self, path: str = "category_classifier.joblib"):
         joblib.dump(self.clf, path)
         print(f"Saved trained classifier to {path}")
 
 def main():
+    # Load and embed training data
+    print("Loading and embedding training data...")
     embedder = EmbedData("data/generated_dataset.json")
     data_frame = embedder.embed()
     
@@ -195,7 +243,7 @@ def main():
     cluster_data_obj.cluster()
     
     print(f"Silhouette Score for {best[0]} clusters: {best[1]}")   
-    cluster_data_obj.visualize_clusters()
+    cluster_data_obj.visualize_clusters()  # Keep the 3D visualization of clusters
     
     centroids_df = pd.DataFrame({'Embedding': [list(center) for center in cluster_data_obj.model.cluster_centers_]})
     centroids_df['Cluster'] = [i for i in range(cluster_data_obj.model.n_clusters)]
@@ -203,22 +251,61 @@ def main():
     
     print(centroids_df.head())
     
-
-    # Classify the centroids using logisitic regression
+    # Classify the centroids using logistic regression
     classifier = CategoryClassifier(centroids_df)
     classifier.cross_validate(np.vstack(data_frame['Embedding'].to_numpy()), data_frame['Category'].values, desired_folds=5)
     classifier.fit_full(np.vstack(data_frame['Embedding'].to_numpy()), data_frame['Category'].values)
     
+    # Generate predictions for all data points in training set
+    y_pred = classifier.predict_embedded_batch(np.vstack(data_frame['Embedding'].to_numpy()))
+    
+    # Add predictions to the dataframe
+    data_frame['Predicted_Category'] = y_pred
+    
+    # Print confusion matrix for training data
+    unique_categories = sorted(data_frame['Category'].unique())
+    classifier.print_confusion_matrix(
+        np.vstack(data_frame['Embedding'].to_numpy()),
+        data_frame['Category'].values,
+        labels=unique_categories
+    )
+    
     centroids_df['Category'] = classifier.predict_embedded_batch(np.vstack(centroids_df['Embedding'].to_numpy()))
     
-    # Print the clusers and their predicted categories
-    for category in centroids_df['Category']:
-        cluster = centroids_df[centroids_df['Category'] == category]['Cluster'].values[0]
-        questions = centroids_df[centroids_df['Category'] == category]['Questions'].values
+    # Print the clusters and their predicted categories
+    for category in centroids_df['Category'].unique():
+        clusters = centroids_df[centroids_df['Category'] == category]['Cluster'].values
+        for cluster in clusters:
+            questions = data_frame[data_frame['Cluster'] == cluster]['Question'].values[:5]  # Show just 5 examples
+            print(f"\nCluster: {cluster} \nCategory: {category} \nSample Questions: {questions}")
+    
+    # Calculate accuracy on training data
+    train_accuracy = (data_frame['Category'] == data_frame['Predicted_Category']).mean()
+    print(f"\nTraining data accuracy: {train_accuracy:.3f}")
+    
+    # Load and test on separate test dataset
+    try:
+        print("\n=== Testing on separate test dataset ===")
+        test_embedder = EmbedData("data/generated_dataset_test.json")
+        test_df = test_embedder.embed()
         
-        print(f"\nCluster: {cluster} \nCategory: {category} \nQuestions: {questions}")
+        # Generate predictions for test data
+        test_predictions = classifier.predict_embedded_batch(np.vstack(test_df['Embedding'].to_numpy()))
+        test_df['Predicted_Category'] = test_predictions
         
-    # TODO: workout some sort of accuracy metric
+        # Calculate and print test accuracy
+        test_accuracy = (test_df['Category'] == test_df['Predicted_Category']).mean()
+        print(f"Test data accuracy: {test_accuracy:.3f}")
+        
+        # Print confusion matrix for test data
+        print("\nConfusion matrix for test data:")
+        classifier.print_confusion_matrix(
+            np.vstack(test_df['Embedding'].to_numpy()),
+            test_df['Category'].values,
+            labels=unique_categories
+        )
+    except Exception as e:
+        print(f"Error testing on separate test dataset: {e}")
 
 if __name__ == "__main__":
     main()
